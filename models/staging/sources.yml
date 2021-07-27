@@ -4,5 +4,5 @@ sources:
  - name: adventure_works
    description: Essa é a fonte de dados do BigQuery, criada através do Stitch.
    tables:
-   - name: person.person
+   - name: person
      description: Essa é a tabela de Pessoas do ERP.
