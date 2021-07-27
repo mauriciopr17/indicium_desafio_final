@@ -5,4 +5,7 @@ sources:
    description: Essa é a fonte de dados do BigQuery, criada através do Stitch.
    tables:
    - name: person
-     description: Essa é a tabela de Pessoas do ERP.
+     description: Essa é a tabela de Pessoa do ERP.
+   tables:
+   - name: products
+     description: Essa é a tabela de Produto do ERP.
