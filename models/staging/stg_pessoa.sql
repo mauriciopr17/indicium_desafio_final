@@ -1,4 +1,5 @@
-dbt_indicium_desafio_finalWITH PESSOA AS (      
+
+WITH PESSOA AS (      
 			     SELECT ROW_NUMBER( ) OVER ( ORDER BY P.BUSINESSENTITYID ) SK_PESSOA
 			           ,P.BUSINESSENTITYID      AS ID_PESSOA
 			     	   ,P.PERSONTYPE            AS TIPO_PESSOA
@@ -8,6 +9,7 @@ dbt_indicium_desafio_finalWITH PESSOA AS (
 			     	   ,P.FIRSTNAME || ' ' || P.MIDDLENAME  || ' ' || P.LASTNAME NOME_COMPLETO
 			     	   ,P.EMAILPROMOTION        AS EMAIL_PROMOCIONAL
 			     	   ,P.MODIFIEDDATE          AS DATA_MODIFICACAO
-			       FROM PERSON.PERSON P )
+			       FROM {{ source('adventure_works', 'person' )}} p )
+			       
 SELECT * FROM PESSOA
 			      

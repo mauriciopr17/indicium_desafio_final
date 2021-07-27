@@ -1,7 +1,7 @@
 version: 2
 
 sources:
- - name: northiwind_dados_brutos_stitch
+ - name: adventure_works
    description: Essa é a fonte de dados do BigQuery, criada através do Stitch.
    tables:
    - name: person.person
