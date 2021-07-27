@@ -7,5 +7,5 @@ sources:
    - name: person
      description: Essa é a tabela de Pessoa do ERP.
    tables:
-   - name: products
+   - name: product
      description: Essa é a tabela de Produto do ERP.
