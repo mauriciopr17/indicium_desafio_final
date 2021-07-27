@@ -1,3 +1,4 @@
+
 WITH PRODUTO AS ( 
 				-- PRODUTOS
 					 SELECT ROW_NUMBER() OVER ( ORDER BY P.PRODUCTID ) SK_PRODUTO
@@ -23,8 +24,8 @@ WITH PRODUTO AS (
 					       ,P.SELLSTARTDATE         AS DATA_INICIO_VENDA
 					       ,P.SELLENDDATE 	        AS DATA_FIM_VENDA
 					       ,P.DISCONTINUEDDATE      AS DATA_DESCONTINUACAO
-					      ,PRODUCTMODELID 		    AS DATA_MODIFICACAO
- 			 	       FROM {{ source('adventure_works', 'product' )}} p )
+					       ,PRODUCTMODELID 		    AS DATA_MODIFICACAO
+					   FROM {{ source('adventure_works', 'product' )}} P
 					  WHERE P.DISCONTINUEDDATE IS NULL 
 				   ORDER BY P.SELLSTARTDATE  )
 SELECT * FROM PRODUTO				   
