@@ -23,7 +23,7 @@ WITH PRODUTO AS (
 					       ,P.SELLSTARTDATE         AS DATA_INICIO_VENDA
 					       ,P.SELLENDDATE 	        AS DATA_FIM_VENDA
 					       ,P.DISCONTINUEDDATE      AS DATA_DESCONTINUACAO
-					       ,PRODUCTMODELID 		    AS DATA_MODIFICACAO
+					      ,PRODUCTMODELID 		    AS DATA_MODIFICACAO
  			 	       FROM {{ source('adventure_works', 'product' )}} p )
 					  WHERE P.DISCONTINUEDDATE IS NULL 
 				   ORDER BY P.SELLSTARTDATE  )
