@@ -6,6 +6,13 @@ sources:
    tables:
    - name: person
      description: Essa é a tabela de Pessoa do ERP.
-   tables:
    - name: product
      description: Essa é a tabela de Produto do ERP.
+   - name: salesreason
+     description: Essa é a tabela de Motivo de Vendas do ERP.
+   - name: stateprovince
+     description: Essa é a tabela de Estado do ERP.
+   - name: address
+     description: Essa é a tabela de Endereço do ERP.
+   - name: countryregion
+     description: Essa é a tabela de Região do País do ERP.
