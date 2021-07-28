@@ -9,7 +9,7 @@ WITH PESSOA AS (
 			     	   ,P.FIRSTNAME || ' ' || P.MIDDLENAME  || ' ' || P.LASTNAME NOME_COMPLETO
 			     	   ,P.EMAILPROMOTION        AS EMAIL_PROMOCIONAL
 			     	   ,P.MODIFIEDDATE          AS DATA_MODIFICACAO
-			       FROM {{ source('adventure_works', 'person' )}} p )
+			       FROM {{ source('adventure_works', 'person' )}} P )
 			       
 SELECT * FROM PESSOA
 			      
