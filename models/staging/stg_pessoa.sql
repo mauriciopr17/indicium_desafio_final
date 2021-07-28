@@ -1,4 +1,3 @@
-
 WITH PESSOA AS (      
 			     SELECT ROW_NUMBER( ) OVER ( ORDER BY P.BUSINESSENTITYID ) SK_PESSOA
 			           ,P.BUSINESSENTITYID      AS ID_PESSOA
@@ -10,6 +9,5 @@ WITH PESSOA AS (
 			     	   ,P.EMAILPROMOTION        AS EMAIL_PROMOCIONAL
 			     	   ,P.MODIFIEDDATE          AS DATA_MODIFICACAO
 			       FROM {{ source('adventure_works', 'person' )}} P )
-			       
 SELECT * FROM PESSOA
 			      
