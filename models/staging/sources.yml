@@ -16,3 +16,5 @@ sources:
      description: Essa é a tabela de Endereço do ERP.
    - name: countryregion
      description: Essa é a tabela de Região do País do ERP.
+   - name: customer
+     description: Essa é a tabela de Cliente do ERP.
