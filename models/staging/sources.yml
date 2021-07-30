@@ -21,4 +21,6 @@ sources:
    - name: salesperson
      description: Essa é a tabela de Vendedor do ERP.
    - name: employee
-     description: Essa é a tabela de Colaborador do ERP.     
+     description: Essa é a tabela de Colaborador do ERP.
+   - name: salesorderheader
+     description: Essa é a tabela de Pedido de Venda (Cabeçalho) do ERP.
