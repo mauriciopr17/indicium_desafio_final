@@ -24,3 +24,5 @@ sources:
      description: Essa é a tabela de Colaborador do ERP.
    - name: salesorderheader
      description: Essa é a tabela de Pedido de Venda (Cabeçalho) do ERP.
+   - name: salesorderdetail
+     description: Essa é a tabela de Pedido de Venda (Detalhes) do ERP.     
