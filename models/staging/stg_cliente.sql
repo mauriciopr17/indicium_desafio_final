@@ -2,12 +2,11 @@ WITH CLIENTE AS (
 				  -- CLIENTE
 				  SELECT ROW_NUMBER() OVER ( ORDER BY C.CUSTOMERID ) SK_CLIENTE
 				  	    ,C.CUSTOMERID            AS ID_CLIENTE
-				  	    ,C.PERSONID 			 AS ID_PESSOA
+				  	    ,C.PERSONID 		    AS ID_PESSOA
 				  	    ,C.TERRITORYID 	         AS ID_TERRORIO
 				    FROM {{ source('adventure_works', 'customer' )}} C ) 
-,PESSOA AS (      
-			     SELECT *
-			       FROM {{ ref('stg_pessoa' )}} P )
+,PESSOA      AS (    SELECT *
+			        FROM {{ ref('stg_pessoa' )}} P )
 ,CLIENTE_DETALHES AS ( SELECT C.SK_CLIENTE
                              ,P.SK_PESSOA
 

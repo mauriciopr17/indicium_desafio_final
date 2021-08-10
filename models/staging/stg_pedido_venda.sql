@@ -1,5 +1,5 @@
 WITH PEDIDO_VENDA AS(   --**-- PEDIDOS CABELAÇHO / VENDA / DATA DE VENDA
-                        SELECT ROW_NUMBER() OVER ( ORDER BY PC.SALESORDERID ) SK_PEDIDO_VENDA
+                      SELECT ROW_NUMBER() OVER ( ORDER BY PC.SALESORDERID ) SK_PEDIDO_VENDA
                             ,PC.SALESORDERID 	     	 AS ID_PEDIDO_VENDA
                             ,PC.REVISIONNUMBER     	     AS NUMERO_REVISAO_PEDIDO
                             ,PC.ORDERDATE 		         AS DATA_PEDIDO
@@ -10,7 +10,7 @@ WITH PEDIDO_VENDA AS(   --**-- PEDIDOS CABELAÇHO / VENDA / DATA DE VENDA
                             ,PC.PURCHASEORDERNUMBER 	 AS NUMERO_PEDIDO_COMPRA
                             ,PC.ACCOUNTNUMBER 	 	     AS NUMERO_CONTA
                             ,PC.CUSTOMERID  		  	 AS ID_CLIENTE
-                            ,PC.SALESORDERID        	 AS ID_VENDEDOR
+                            ,PC.SALESPERSONID        	 AS ID_VENDEDOR
                             ,PC.TERRITORYID	      	     AS ID_TERRITORIO
                             ,PC.BILLTOADDRESSID	  	     AS ENDERECO_CONTA
                             ,PC.SHIPTOADDRESSID 	  	 AS ID_ENDERECO_ENTREGA
@@ -23,5 +23,6 @@ WITH PEDIDO_VENDA AS(   --**-- PEDIDOS CABELAÇHO / VENDA / DATA DE VENDA
                             ,PC.FREIGHT 		         AS FRETE
                             ,PC.TOTALDUE   	             AS TOTAL_DEVIDO
                         FROM {{ source('adventure_works', 'salesorderheader' )}} PC )
-SELECT * FROM PEDIDO_VENDA P                     
+SELECT * FROM PEDIDO_VENDA P     
+           
                        
