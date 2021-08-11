@@ -12,6 +12,12 @@ WITH PEDIDO            AS ( SELECT *
                               FROM {{ ref('dim_cliente') }} )
 ,VENDEDOR              AS ( SELECT *
                               FROM {{ ref('dim_vendedor') }} )
+,ENDERECO              AS ( SELECT *
+                              FROM {{ ref('dim_endereco') }} )
+,ESTADO                AS ( SELECT *
+                              FROM {{ ref('dim_estado') }} )
+,REGIAO_PAIS           AS ( SELECT *
+                              FROM {{ ref('dim_regiao_pais') }} )
 
 
 SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
@@ -20,7 +26,10 @@ SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
         ,PDT.SK_PRODUTO      -- CHAVE SURROGATE
         ,C.SK_CLIENTE        -- CHAVE SURROGATE
         ,V.SK_VENDEDOR       -- CHAVE SURROGATE
-
+        ,E.SK_ENDERECO       -- CHAVE SURROGATE
+        ,ES.SK_ESTADO        -- CHAVE SURROGATE
+        ,RP.SK_PAIS_REGIAO -- CHAVE SURROGATE
+        
         ,C.ID_CLIENTE
         ,C.ID_TERRORIO    AS ID_TERRITORIO_CLIENTE
         ,V.ID_VENDEDOR    
@@ -37,6 +46,9 @@ SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
         
         ,PD.ID_PEDIDO_VENDA_DETALHES
         ,PDT.ID_PRODUTO
+        ,E.ID_ENDERECO
+        ,E.ID_ESTADO
+        ,RP.PAIS_REGIAO_ESTADO               
         
          -- PEDIDO
         ,P.NUMERO_REVISAO_PEDIDO
@@ -119,12 +131,29 @@ SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
        ,V.EMAIL_PROMOCIONAL           AS EMAIL_PROMOCIONAL_VENDEDOR
        ,V.DATA_MODIFICACAO_PESSOA     AS DATA_MODIFICACAO_PESSOA_VENDEDOR 
 
+       -- ENDEREÇO
+       ,E.DESCRICAO_ENDERECO
+       ,E.COMPLEMENTO_ENDERECO
+       ,E.CIDADE
+       ,E.CEP
+
+      -- ESTADO
+      ,ES.NOME_ESTADO
+      ,ES.UF_ESTADO
+      ,ES.ID_TERRITORIO
+
+      -- PAÍS REGIÃO ESTADO
+			,RP.NOME_PAIS     
+
   FROM PEDIDO                      P 
-  LEFT JOIN PEDIDO_VENDA_DETALHES  PD  ON PD.ID_PEDIDO_VENDA  = P.ID_PEDIDO_VENDA
-  LEFT JOIN MOTIVO_VENDA_PEDIDO    MVP ON MVP.ID_PEDIDO_VENDA = P.ID_PEDIDO_VENDA
-  LEFT JOIN MOTIVO_VENDA           MV  ON MV.ID_MOTIVO_VENDA  = MVP.ID_MOTIVO_VENDA
-  LEFT JOIN PRODUTO                PDT ON PDT.ID_PRODUTO      = PD.ID_PRODUTO
-  LEFT JOIN CLIENTE                C   ON C.ID_CLIENTE        = P.ID_CLIENTE
-  LEFT JOIN VENDEDOR               V   ON V.ID_VENDEDOR       = P.ID_VENDEDOR
+  LEFT JOIN PEDIDO_VENDA_DETALHES  PD  ON PD.ID_PEDIDO_VENDA    = P.ID_PEDIDO_VENDA
+  LEFT JOIN MOTIVO_VENDA_PEDIDO    MVP ON MVP.ID_PEDIDO_VENDA   = P.ID_PEDIDO_VENDA
+  LEFT JOIN MOTIVO_VENDA           MV  ON MV.ID_MOTIVO_VENDA    = MVP.ID_MOTIVO_VENDA
+  LEFT JOIN PRODUTO                PDT ON PDT.ID_PRODUTO        = PD.ID_PRODUTO
+  LEFT JOIN CLIENTE                C   ON C.ID_CLIENTE          = P.ID_CLIENTE
+  LEFT JOIN VENDEDOR               V   ON V.ID_VENDEDOR         = P.ID_VENDEDOR
+  LEFT JOIN ENDERECO               E   ON E.ID_ENDERECO         = P.ID_ENDERECO_ENTREGA
+  LEFT JOIN ESTADO                 ES  ON ES.ID_ESTADO          = E.ID_ESTADO
+  LEFT JOIN REGIAO_PAIS            RP  ON RP.PAIS_REGIAO_ESTADO = ES.PAIS_REGIAO_ESTADO
  WHERE P.ID_PEDIDO_VENDA = 43702
  
