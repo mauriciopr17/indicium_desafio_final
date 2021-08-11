@@ -7,3 +7,4 @@ WITH MOTIVO_VENDA AS (
 						 	   ,S.MODIFIEDDATE        AS DATA_MODIFICACAO_MOTIVO_VENDA
                            FROM {{ source('adventure_works', 'salesreason' )}} S ) 
 SELECT * FROM MOTIVO_VENDA
+WHERE SK_MOTIVO_VENDA IS NOT NULL
