@@ -140,8 +140,7 @@ SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
       -- ESTADO
       ,ES.NOME_ESTADO
       ,ES.UF_ESTADO
-      ,ES.ID_TERRITORIO
-
+      
       -- PAÍS REGIÃO ESTADO
 			,RP.NOME_PAIS     
 
