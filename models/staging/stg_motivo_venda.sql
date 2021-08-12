@@ -6,7 +6,7 @@ WITH MOTIVO_VENDA AS (
 								  WHEN ( S.NAME	IS NOT NULL ) THEN
 								    S.NAME
 								  ELSE
-								    'Others'
+								    'Other'
 								  END DESCRICAO_MOTIVO_VENDA
 						 	   ,S.REASONTYPE 		  AS TIPO_VENDA 
 						 	   ,S.MODIFIEDDATE        AS DATA_MODIFICACAO_MOTIVO_VENDA
