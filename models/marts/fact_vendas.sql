@@ -18,6 +18,8 @@ WITH PEDIDO            AS ( SELECT *
                               FROM {{ ref('dim_estado') }} )
 ,REGIAO_PAIS           AS ( SELECT *
                               FROM {{ ref('dim_regiao_pais') }} )
+,TIPO_CARTAO           AS ( SELECT *
+                              FROM {{ ref('dim_tipo_cartao') }} )
 
 
 SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
@@ -28,7 +30,7 @@ SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
         ,V.SK_VENDEDOR       -- CHAVE SURROGATE
         ,E.SK_ENDERECO       -- CHAVE SURROGATE
         ,ES.SK_ESTADO        -- CHAVE SURROGATE
-        ,RP.SK_PAIS_REGIAO -- CHAVE SURROGATE
+        ,RP.SK_PAIS_REGIAO   -- CHAVE SURROGATE
         
         ,C.ID_CLIENTE
         ,C.ID_TERRORIO    AS ID_TERRITORIO_CLIENTE
@@ -41,7 +43,6 @@ SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
         ,P.ID_TERRITORIO
         ,P.ID_ENDERECO_ENTREGA
         ,P.ID_METODO_ENTREGA
-        ,P.ID_CARTAO_CREDITO
         ,P.ID_TAXA_CAMBIO
         
         ,PD.ID_PEDIDO_VENDA_DETALHES
@@ -154,5 +155,6 @@ SELECT   ROW_NUMBER() OVER ( ORDER BY P.SK_PEDIDO_VENDA ) A
   LEFT JOIN ENDERECO               E   ON E.ID_ENDERECO         = P.ID_ENDERECO_ENTREGA
   LEFT JOIN ESTADO                 ES  ON ES.ID_ESTADO          = E.ID_ESTADO
   LEFT JOIN REGIAO_PAIS            RP  ON RP.PAIS_REGIAO_ESTADO = ES.PAIS_REGIAO_ESTADO
+  LEFT JOIN TIPO_CARTAO            TC  ON TC.ID_TIPO_CARTAO     = P.ID_TIPO_CARTAO
  
  

@@ -28,4 +28,6 @@ sources:
      description: Essa é a tabela de Pedido de Venda (Detalhes) do ERP.     
    - name: salesorderheadersalesreason
      description: Essa é a tabela de Motivo de Venda do Pedido.
+   - name: creditcard
+     description: Essa é a tabela de Cartão de Crédito.     
      

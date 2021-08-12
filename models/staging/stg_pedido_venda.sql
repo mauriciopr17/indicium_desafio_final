@@ -15,7 +15,7 @@ WITH PEDIDO_VENDA AS(   --**-- PEDIDOS CABELAÇHO / VENDA / DATA DE VENDA
                             ,PC.BILLTOADDRESSID	  	     AS ENDERECO_CONTA
                             ,PC.SHIPTOADDRESSID 	  	 AS ID_ENDERECO_ENTREGA
                             ,PC.SHIPMETHODID 	      	 AS ID_METODO_ENTREGA
-                            ,PC.CREDITCARDID 	         AS ID_CARTAO_CREDITO
+                            ,PC.CREDITCARDID 	         AS ID_TIPO_CARTAO
                             ,PC.CREDITCARDAPPROVALCODE   AS CODIGO_APROVACAO_CARTAO
                             ,PC.CURRENCYRATEID           AS ID_TAXA_CAMBIO
                             ,PC.SUBTOTAL 	   	         
